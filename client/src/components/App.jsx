@@ -22,14 +22,13 @@ class App extends React.Component {
 handleChange(e) {
   this.setState({
     [e.target.name]: e.target.value
-  }, ()=>{console.log(this.state)})
+  })
 }
 
 convertTimeToDecimal(time) {
   let minutes = time.slice(-2);
   let hours = time.slice(0,2);
   let result = Number(hours) + (Number(minutes) / 60);
-  console.log(result);
   return result;
 }
 
@@ -39,12 +38,10 @@ handleSubmit(e) {
   let tafbInDecimal = this.convertTimeToDecimal(this.state.tafb);
   let hoursWorkedOnHolidayInDecimal = this.convertTimeToDecimal(this.state.hoursWorkedOnHoliday);
   let vacationHoursEarned = (creditHoursInDecimal / tafbInDecimal) * hoursWorkedOnHolidayInDecimal;
-  console.log('vacationHoursEarned', vacationHoursEarned);
   let vacationPayEarned =  vacationHoursEarned * Number(this.state.hourlyPay);
-  console.log('vacationPayEarned', vacationPayEarned)
   this.setState({
     vacationPay: vacationPayEarned
-  }, ()=>{console.log(this.state)})
+  })
 }
 
 clearForm() {
@@ -54,7 +51,7 @@ clearForm() {
     tafb: '',
     hoursWorkedOnHoliday: '',
     vacationPay: ''
-  }, ()=>{console.log(this.state)})
+  })
 }
 
   render() {
