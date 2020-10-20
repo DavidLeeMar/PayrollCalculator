@@ -5,7 +5,7 @@ class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      hourlyPay: "",
+      hourlyPay: '',
       creditHours: '',
       tafb: '',
       hoursWorkedOnHoliday: '',
@@ -15,6 +15,7 @@ class App extends React.Component {
    this.handleChange = this.handleChange.bind(this)
    this.handleSubmit = this.handleSubmit.bind(this)
    this.convertTimeToDecimal = this.convertTimeToDecimal.bind(this)
+   this.clearForm = this.clearForm.bind(this)
   }
 //need to verify input type, input range
 
@@ -46,25 +47,37 @@ handleSubmit(e) {
   }, ()=>{console.log(this.state)})
 }
 
+clearForm() {
+  this.setState({
+    hourlyPay: '',
+    creditHours: '',
+    tafb: '',
+    hoursWorkedOnHoliday: '',
+    vacationPay: ''
+  }, ()=>{console.log(this.state)})
+}
+
   render() {
 
     return (
       <>
         <form>
           <label>Hourly Pay ::
-            <input type="text" name="hourlyPay" onChange={this.handleChange}></input>
+            <input type="text" name="hourlyPay" value={this.state.hourlyPay} onChange={this.handleChange}></input>
           </label><br></br>
           <label>Credit Hours:
-            <input type="text" name="creditHours" onChange={this.handleChange} placeholder="HH:mm"></input>
+            <input type="text" name="creditHours" value={this.state.creditHours} onChange={this.handleChange} placeholder="HH:mm"></input>
           </label><br></br>
           <label>Time Away From Base:
-            <input type="text" name="tafb" onChange={this.handleChange} placeholder="HH:mm"></input>
+            <input type="text" name="tafb" value={this.state.tafb} onChange={this.handleChange} placeholder="HH:mm"></input>
           </label><br></br>
           <label>Hours Worked On Holiday:
-            <input type="text" name="hoursWorkedOnHoliday" onChange={this.handleChange} placeholder="HH:mm"></input>
+            <input type="text" name="hoursWorkedOnHoliday" value={this.state.hoursWorkedOnHoliday} onChange={this.handleChange} placeholder="HH:mm"></input>
           </label><br></br>
           <input type="submit" value="Submit" onClick={this.handleSubmit}/>
+          <button onClick={this.clearForm}>Clear</button>
         </form>
+
         <div>
           {this.state.vacationPay}
         </div>
